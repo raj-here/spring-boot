@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.biz.bean.Book;
@@ -18,11 +20,13 @@ public class BookServiceImpl implements BookService {
 	private BookRepository bookRepository;
 
 	@Override
+	@Cacheable("book")
 	public List<Book> findAll() {
 		return bookRepository.findAll();
 	}
 
-	@Override
+	@Override  
+	@CacheEvict(value = "book", allEntries = true)
 	public void saveBook(Book book) {
 		bookRepository.save(book);
 

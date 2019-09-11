@@ -90,6 +90,7 @@ public class TestController {
 	public void testOptimisticLocking() {
 		Book book = bookService.findOne(1);
 		System.out.println(book);
+		bookService.detachedEntity(book);
 		update();
 		System.out.println("Book Updated");
 		try {

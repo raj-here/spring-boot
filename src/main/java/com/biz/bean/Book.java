@@ -10,10 +10,10 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name="book")
+@Table(name = "book")
 public class Book implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	long id;
@@ -21,7 +21,7 @@ public class Book implements Serializable {
 	String author;
 	long price;
 	@Version
-    private int version;
+	private int version;
 
 	public int getVersion() {
 		return version;
@@ -61,5 +61,10 @@ public class Book implements Serializable {
 
 	public void setPrice(long price) {
 		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Name:" + this.name + ", Author:" + this.author + ", Price" + this.price + ", version:" + this.version;
 	}
 }

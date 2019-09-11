@@ -86,4 +86,27 @@ public class TestController {
 		return bookService.update(book);
 	}
 
+	@RequestMapping(path = "/test")
+	public void testOptimisticLocking() {
+		Book book = bookService.findOne(1);
+		System.out.println(book);
+		update();
+		System.out.println("Book Updated");
+		try {
+			Thread.sleep(15000);
+		} catch (Exception e) {
+			System.out.println("Exception 1: " + e);
+		}
+		
+		try {
+			System.out.println("Updating Again");
+//			bookService.update(book);
+			updateAgain();
+		} catch (Exception e) {
+			System.out.println("Exception 2: " + e);
+		}
+
+
+	}
+
 }

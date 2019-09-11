@@ -20,4 +20,6 @@ public interface BookService {
 	public List<Book> findByNameAndAuthor(String name, String author);
 
 	public List<Book> findByPrice(long price);
+	
+	public Book update(Book book);
 }

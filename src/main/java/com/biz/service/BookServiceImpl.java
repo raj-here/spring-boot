@@ -25,8 +25,8 @@ public class BookServiceImpl implements BookService {
 		return bookRepository.findAll();
 	}
 
-	@Override  
-//	@CacheEvict(value = "book", allEntries = true)
+	@Override
+	// @CacheEvict(value = "book", allEntries = true)
 	public void saveBook(Book book) {
 		bookRepository.save(book);
 
@@ -40,7 +40,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void deleteById(long id) {
 		bookRepository.deleteById(id);
+	}
 
+	@Override
+	public Book update(Book book) {
+		return bookRepository.save(book);
 	}
 
 	@Override
@@ -56,7 +60,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	@Cacheable(value = "employee", key = "#name")
+	@Cacheable(value = "book", key = "#name")
 	public List<Book> findByNameAndAuthor(String name, String author) {
 		return bookRepository.findByNameAndAuthor(name, author);
 	}

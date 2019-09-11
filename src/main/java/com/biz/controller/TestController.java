@@ -7,13 +7,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.biz.bean.Book;
+import com.biz.bean.Employee;
 import com.biz.service.BookService;
+import com.biz.service.EmployeeService;
 
 @RestController
 public class TestController {
 
 	@Autowired
 	private BookService bookService;
+
+	@Autowired
+	private EmployeeService empService;
 
 	@RequestMapping(path = "/")
 	public String home() {
@@ -24,7 +29,7 @@ public class TestController {
 	public List<Book> getBooks() {
 		return bookService.findAll();
 	}
-	
+
 	@RequestMapping(path = "/save")
 	public void saveBook() {
 		Book book = new Book();
@@ -34,7 +39,19 @@ public class TestController {
 
 		bookService.saveBook(book);
 	}
-	
+
+	@RequestMapping(path = "/save_emp")
+	public void saveEmployee() {
+
+		Employee emp = new Employee();
+		emp.setName("Raj");
+		emp.setDesignation("Java developer");
+		emp.setAge(25);
+		emp.setSalary(1000);
+
+		empService.saveEmployee(emp);
+	}
+
 	@RequestMapping(path = "/save1")
 	public void saveBook1() {
 		Book book = new Book();
@@ -44,15 +61,29 @@ public class TestController {
 
 		bookService.saveBook(book);
 	}
-	
+
 	@RequestMapping(path = "/name")
 	public List<Book> find() {
 		return bookService.findByNameAndAuthor("Name", "Raj");
 	}
-	
+
 	@RequestMapping(path = "/name1")
 	public List<Book> find1() {
 		return bookService.findByNameAndAuthor("Name", "Raj 1");
+	}
+
+	@RequestMapping(path = "/update")
+	public Book update() {
+		Book book = bookService.findOne(1);
+		book.setAuthor("New Raj");
+		return bookService.update(book);
+	}
+
+	@RequestMapping(path = "/update_again")
+	public Book updateAgain() {
+		Book book = bookService.findOne(1);
+		book.setAuthor("New Raj 1");
+		return bookService.update(book);
 	}
 
 }

@@ -2,6 +2,8 @@ package com.biz.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class BookServiceImpl implements BookService {
 
 	@Autowired
 	private BookRepository bookRepository;
+	
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	@Override
 	@Cacheable("book")
@@ -68,6 +73,11 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public List<Book> findByPrice(long price) {
 		return bookRepository.findByPrice(price);
+	}
+	
+	@Override
+	public void detachedEntity(Book book) {
+		entityManager.detach(book);
 	}
 
 }

@@ -22,4 +22,6 @@ public interface BookService {
 	public List<Book> findByPrice(long price);
 	
 	public Book update(Book book);
+	
+	public void detachedEntity(Book book);
 }

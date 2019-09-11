@@ -34,5 +34,25 @@ public class TestController {
 
 		bookService.saveBook(book);
 	}
+	
+	@RequestMapping(path = "/save1")
+	public void saveBook1() {
+		Book book = new Book();
+		book.setAuthor("Raj 1");
+		book.setName("Name");
+		book.setPrice(250);
+
+		bookService.saveBook(book);
+	}
+	
+	@RequestMapping(path = "/name")
+	public List<Book> find() {
+		return bookService.findByNameAndAuthor("Name", "Raj");
+	}
+	
+	@RequestMapping(path = "/name1")
+	public List<Book> find1() {
+		return bookService.findByNameAndAuthor("Name", "Raj 1");
+	}
 
 }

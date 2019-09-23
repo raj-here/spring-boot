@@ -2,7 +2,11 @@ package com.biz.controller;
 
 import java.util.List;
 
+import javax.persistence.LockModeType;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -91,23 +95,39 @@ public class TestController {
 		Book book = bookService.findOne(1);
 		System.out.println(book);
 		bookService.detachedEntity(book);
-		update();
+//		update();
 		System.out.println("Book Updated");
 		try {
-			Thread.sleep(15000);
+			Thread.sleep(2000);
 		} catch (Exception e) {
 			System.out.println("Exception 1: " + e);
 		}
 		
 		try {
 			System.out.println("Updating Again");
-//			bookService.update(book);
-			updateAgain();
+			System.out.println(book.getAuthor());
+			bookService.update(book);
 		} catch (Exception e) {
 			System.out.println("Exception 2: " + e);
 		}
-
-
 	}
+	
+	@RequestMapping(path = "/test2")
+	public void testOptimisticLocking2() {
+		Book book = bookService.findOne(1);
+		System.out.println(book);
+		bookService.detachedEntity(book);
+		System.out.println(book.getName());
+		
+//		Book book1 = bookService.findOne(1);
+//		bookService.detachedEntity(book1);
+//		System.out.println(book1);
+	
+	}
+	
+	@RequestMapping("/health")
+	 public ResponseEntity healthCheck() {
+	     return new ResponseEntity<>(HttpStatus.OK);
+	 }
 
 }

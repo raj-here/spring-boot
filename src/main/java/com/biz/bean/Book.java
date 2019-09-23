@@ -16,10 +16,10 @@ public class Book implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
-	String name;
-	String author;
-	long price;
+	private long id;
+	private String name;
+	private String author;
+	private long price;
 	@Version
 	private int version;
 

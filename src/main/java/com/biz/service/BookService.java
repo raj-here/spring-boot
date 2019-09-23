@@ -23,5 +23,7 @@ public interface BookService {
 	
 	public Book update(Book book);
 	
+	public Book findOneWithOptimistic(int id);
+	
 	public void detachedEntity(Book book);
 }

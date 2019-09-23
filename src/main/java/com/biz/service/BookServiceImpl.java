@@ -3,6 +3,7 @@ package com.biz.service;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
@@ -78,6 +79,12 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void detachedEntity(Book book) {
 		entityManager.detach(book);
+	}
+
+	@Override
+	public Book findOneWithOptimistic(int id) {
+		entityManager.find(Book.class, id, LockModeType.READ);
+		return null;
 	}
 
 }

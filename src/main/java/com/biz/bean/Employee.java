@@ -15,12 +15,12 @@ public class Employee  implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	long id;
+	private long id;
 
-	String name;
-	int age;
-	String designation;
-	double salary;
+	private String name;
+	private int age;
+	private String designation;
+	private double salary;
 
 	public String getName() {
 		return name;

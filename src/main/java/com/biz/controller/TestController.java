@@ -1,0 +1,47 @@
+package com.biz.controller;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.biz.bean.Address;
+import com.biz.bean.Student;
+import com.biz.service.StudentService;
+
+@RestController
+@RequestMapping(value = "/test")
+public class TestController {
+
+	@Autowired
+	private StudentService studentService;
+
+	@RequestMapping(path = "/save", method = RequestMethod.POST)
+	public void saveStudent() {
+		Address address = new Address();
+		address.setCityName("Chandigarh");
+		
+		Address address2 = new Address();
+		address2.setCityName("Delhi");
+		
+		Address address3 = new Address();
+		address3.setCityName("Lucknow");
+
+		List<Address> set = new ArrayList<Address>();
+		
+		set.add(address);
+		set.add(address2);
+		set.add(address3);
+		
+		Student student = new Student();
+		student.setName("Raj");
+		student.setAddress(set);
+
+		studentService.save(student);
+	}
+}

@@ -13,13 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "cotegories")
-public class Cotegory implements Serializable {
+@Table(name = "categories")
+public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -28,25 +29,23 @@ public class Cotegory implements Serializable {
 
 	@NotNull
 	@Size(max = 100)
-	@Column(name = "cotegory_name")
+	@Column(name = "category_name")
 	private String cotegoryName;
 
 	@NotNull
-	@Size(max = 100)
 	@Column(name = "has_childrens")
 	private boolean hasChildrens;
 
 	@NotNull
-	@Size(max = 100)
-	@Column(name = "cotegory_details")
+	@OneToOne(cascade = CascadeType.ALL)
 	private CategoryDetails cotegoryDetails;
 
 	@ManyToOne(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "sub_category_id")
-	private Cotegory subCategory;
+	private Category subCategory;
 
 	@OneToMany(mappedBy = "subCategory")
-	private Set<Cotegory> subCategories = new HashSet<Cotegory>();
+	private Set<Category> subCategories = new HashSet<Category>();
 
 	public long getId() {
 		return id;
@@ -80,19 +79,19 @@ public class Cotegory implements Serializable {
 		this.cotegoryDetails = cotegoryDetails;
 	}
 
-	public Cotegory getSubCategory() {
+	public Category getSubCategory() {
 		return subCategory;
 	}
 
-	public void setSubCategory(Cotegory subCategory) {
+	public void setSubCategory(Category subCategory) {
 		this.subCategory = subCategory;
 	}
 
-	public Set<Cotegory> getSubCategories() {
+	public Set<Category> getSubCategories() {
 		return subCategories;
 	}
 
-	public void setSubCategories(Set<Cotegory> subCategories) {
+	public void setSubCategories(Set<Category> subCategories) {
 		this.subCategories = subCategories;
 	}
 

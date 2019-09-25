@@ -15,5 +15,7 @@ public interface CategoryService {
 	public void deleteById(long id);
 
 	public void delete(Category category);
+	
+	public List<Category> finAllRootCategory();
 
 }

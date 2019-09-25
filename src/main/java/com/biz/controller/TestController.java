@@ -1,9 +1,7 @@
 package com.biz.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.biz.bean.Address;
 import com.biz.bean.Student;
+import com.biz.service.AddressService;
 import com.biz.service.StudentService;
 
 @RestController
@@ -20,7 +19,20 @@ public class TestController {
 
 	@Autowired
 	private StudentService studentService;
+	
+	@Autowired
+	private AddressService addressService;
 
+	@RequestMapping(path = "/getStudents", method = RequestMethod.GET)
+	public List<Student> getStudents() {
+		return studentService.getAll();
+	}
+	
+	@RequestMapping(path = "/getAddresses", method = RequestMethod.GET)
+	public List<Address> getAddresses() {
+		return addressService.getAll();
+	}
+	
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
 	public void saveStudent() {
 		Address address = new Address();

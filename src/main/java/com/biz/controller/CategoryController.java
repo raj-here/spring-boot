@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,9 +21,15 @@ public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
 
-	@RequestMapping(path = { "", "/getAll" })
-	public List<Category> getBooks() {
-		return categoryService.findAll();
+	@RequestMapping(path = { "", "/getAll" }, method = RequestMethod.GET)
+	public List<Category> getAllRootCategory() {
+		return categoryService.finAllRootCategory();
+	}
+
+	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
+	public Category getById(@PathVariable("id") Long id) {
+		System.out.println("id" + id);
+		return categoryService.findOne(id);
 	}
 
 	@RequestMapping(path = "/save", method = RequestMethod.POST)
@@ -95,13 +102,14 @@ public class CategoryController {
 		set1.add(cat2);
 		set1.add(cat3);
 
-		Set<Category> set2 = new HashSet<Category>();
-		set2.add(cat11);
-		set2.add(cat22);
-		set2.add(cat33);
+		Set<Category> set11 = new HashSet<Category>();
+		set11.add(cat11);
+		set11.add(cat22);
+		set11.add(cat33);
 
-		cat1.setSubCategories(set2);
-		cat.setSubCategories(set1);
+		cat1.setSubcategories(set11);
+
+		cat.setSubcategories(set1);
 
 		categoryService.save(cat);
 

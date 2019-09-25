@@ -1,17 +1,16 @@
 package com.biz.bean;
 
 import java.io.Serializable;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -40,12 +39,9 @@ public class Category implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private CategoryDetails cotegoryDetails;
 
-	@ManyToOne(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "sub_category_id")
-	private Category subCategory;
-
-	@OneToMany(mappedBy = "subCategory")
-	private Set<Category> subCategories = new HashSet<Category>();
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JoinColumn(name = "parent_id")
+	private Set<Category> subcategories;
 
 	public long getId() {
 		return id;
@@ -79,20 +75,12 @@ public class Category implements Serializable {
 		this.cotegoryDetails = cotegoryDetails;
 	}
 
-	public Category getSubCategory() {
-		return subCategory;
+	public Set<Category> getSubcategories() {
+		return subcategories;
 	}
 
-	public void setSubCategory(Category subCategory) {
-		this.subCategory = subCategory;
-	}
-
-	public Set<Category> getSubCategories() {
-		return subCategories;
-	}
-
-	public void setSubCategories(Set<Category> subCategories) {
-		this.subCategories = subCategories;
+	public void setSubcategories(Set<Category> subcategories) {
+		this.subcategories = subcategories;
 	}
 
 }

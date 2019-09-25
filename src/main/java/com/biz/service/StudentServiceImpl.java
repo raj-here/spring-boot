@@ -1,5 +1,7 @@
 package com.biz.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,11 @@ public class StudentServiceImpl implements StudentService {
 	public void save(Student student) {
 		studentRepository.save(student);
 
+	}
+
+	@Override
+	public List<Student> getAll() {
+		return studentRepository.findAll();
 	}
 
 }

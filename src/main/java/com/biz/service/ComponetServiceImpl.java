@@ -35,7 +35,7 @@ public class ComponetServiceImpl implements ComponentService {
 
 	@Override
 	public Component findOne(long id) {
-		return componentRepository.getOne(id);
+		return componentRepository.findById(id);
 	}
 
 	@Override

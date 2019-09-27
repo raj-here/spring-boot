@@ -10,4 +10,6 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
 
 	public List<Component> findByComponentName(String componentName);
 
+	public Component findById(long id);
+
 }

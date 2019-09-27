@@ -30,7 +30,11 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void save(Category category) {
 		categoryRepository.save(category);
-
+	}
+	
+	@Override
+	public void saveAll(List<Category> categories) {
+		categoryRepository.saveAll(categories);
 	}
 
 	@Override
@@ -50,7 +54,13 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<Category> finAllRootCategory() {
-		return categoryRepository.tanuMethod();
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+//	@Override
+//	public List<Category> finAllRootCategory() {
+//		return categoryRepository.tanuMethod();
+//	}
 
 }

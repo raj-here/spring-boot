@@ -12,17 +12,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "categoryDetails")
-public class CategoryDetails implements Serializable {
+@Table(name = "component_details")
+public class ComponentDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
 	@NotNull
 	@Size(max = 100)
-	@Column(name = "category_name")
+	@Column(name = "item_name")
 	private String name;
 
 	public long getId() {

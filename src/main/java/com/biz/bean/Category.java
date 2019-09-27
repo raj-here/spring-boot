@@ -1,6 +1,7 @@
 package com.biz.bean;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,16 +13,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.biz.enums.ReseachToolEnum.CategotyType;
+
 @Entity
-@Table(name = "categories")
+@Table(name = "Categories")
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -29,19 +30,20 @@ public class Category implements Serializable {
 	@NotNull
 	@Size(max = 100)
 	@Column(name = "category_name")
-	private String cotegoryName;
+	private String categoryName;
 
 	@NotNull
-	@Column(name = "has_childrens")
-	private boolean hasChildrens;
+	@Column(name = "category_type")
+	private CategotyType type;
 
 	@NotNull
-	@OneToOne(cascade = CascadeType.ALL)
-	private CategoryDetails cotegoryDetails;
+	@Size(max = 100)
+	@Column(name = "icon_url")
+	private String iconUrl;
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "parent_id")
-	private Set<Category> subcategories;
+	@JoinColumn(name = "category_id")
+	private List<Component> component;
 
 	public long getId() {
 		return id;
@@ -51,36 +53,36 @@ public class Category implements Serializable {
 		this.id = id;
 	}
 
-	public String getCotegoryName() {
-		return cotegoryName;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public void setCotegoryName(String cotegoryName) {
-		this.cotegoryName = cotegoryName;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 
-	public boolean isHasChildrens() {
-		return hasChildrens;
+	public CategotyType getType() {
+		return type;
 	}
 
-	public void setHasChildrens(boolean hasChildrens) {
-		this.hasChildrens = hasChildrens;
+	public void setType(CategotyType type) {
+		this.type = type;
 	}
 
-	public CategoryDetails getCotegoryDetails() {
-		return cotegoryDetails;
+	public String getIconUrl() {
+		return iconUrl;
 	}
 
-	public void setCotegoryDetails(CategoryDetails cotegoryDetails) {
-		this.cotegoryDetails = cotegoryDetails;
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
 	}
 
-	public Set<Category> getSubcategories() {
-		return subcategories;
+	public List<Component> getComponent() {
+		return component;
 	}
 
-	public void setSubcategories(Set<Category> subcategories) {
-		this.subcategories = subcategories;
+	public void setComponent(List<Component> component) {
+		this.component = component;
 	}
 
 }

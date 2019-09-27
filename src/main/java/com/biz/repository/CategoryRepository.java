@@ -11,10 +11,10 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
 
 	public List<Category> findByCotegoryName(String categoryName);
 	
-	public List<Category> findBySubcategoriesId(long id);
+//	public List<Category> findBySubcategoriesId(long id);
+//	
+//	public List<Category> findBySubcategoriesIsNotNull();
 	
-	public List<Category> findBySubcategoriesIsNotNull();
-	
-	@Query("select c from Category c where c.subcategories.id is null")
-	public List<Category> tanuMethod();
+//	@Query("select c from Category c where c.subcategories.id is null")
+//	public List<Category> tanuMethod();
 }

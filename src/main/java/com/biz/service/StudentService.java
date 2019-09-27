@@ -9,5 +9,7 @@ public interface StudentService {
 	public void save(Student student);
 	
 	public List<Student> getAll();
+	
+	public Student findById(long id);
 
 }

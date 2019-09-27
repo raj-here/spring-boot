@@ -9,6 +9,8 @@ public interface CategoryService {
 	public List<Category> findAll();
 
 	public void save(Category category);
+	
+	public void saveAll(List<Category> categories);
 
 	public Category findOne(long id);
 

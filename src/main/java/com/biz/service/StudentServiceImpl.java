@@ -28,4 +28,10 @@ public class StudentServiceImpl implements StudentService {
 		return studentRepository.findAll();
 	}
 
+	@Override
+	public Student findById(long id) {
+//		return studentRepository.getOne(id);
+		return studentRepository.findById(id);
+	}
+
 }

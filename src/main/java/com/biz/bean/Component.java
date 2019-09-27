@@ -37,6 +37,11 @@ public class Component implements Serializable {
 	private boolean hasChildrens;
 
 	@NotNull
+	@Size(max = 100)
+	@Column(name = "icon_url")
+	private String iconUrl;
+
+	@NotNull
 	@OneToOne(cascade = CascadeType.ALL)
 	private ComponentDetail componentDetail;
 
@@ -82,6 +87,14 @@ public class Component implements Serializable {
 
 	public void setSubComponets(List<Component> subComponets) {
 		this.subComponets = subComponets;
+	}
+
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
 	}
 
 }

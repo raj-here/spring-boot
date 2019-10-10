@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.biz.bean.Component;
 
-public interface ComponentRepository extends JpaRepository<Component, Long> {
+public interface ComponentRepository extends JpaRepository<Component, String> {
 
 	public List<Component> findByComponentName(String componentName);
 

@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.biz.bean.Category;
 
-public interface CategoryRepository extends JpaRepository<Category, Long> {
+public interface CategoryRepository extends JpaRepository<Category, String> {
 
 	public List<Category> findByCategoryName(String categoryName);
 	

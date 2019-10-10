@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import com.biz.enums.ReseachToolEnum.CategotyType;
 
 @Entity
@@ -24,8 +26,9 @@ import com.biz.enums.ReseachToolEnum.CategotyType;
 public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	private String id;
 
 	@NotNull
 	@Size(max = 100)
@@ -45,11 +48,11 @@ public class Category implements Serializable {
 	@JoinColumn(name = "category_id")
 	private List<Component> component;
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

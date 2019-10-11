@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 public class Application {
 
 	public static void main(String[] args) {
+		System.out.println("ell");
 		SpringApplication.run(Application.class, args);
 	}
 

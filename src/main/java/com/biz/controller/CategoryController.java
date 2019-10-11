@@ -33,7 +33,7 @@ public class CategoryController {
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)
-	public Category getById(@PathVariable("id") Long id) {
+	public Category getById(@PathVariable("id") String id) {
 		System.out.println("id" + id);
 		return categoryService.findOne(id);
 	}
@@ -87,7 +87,7 @@ public class CategoryController {
 		cat9.setType(CategotyType.QUICK_PART);
 
 		List<Component> comList = new ArrayList<Component>();
-		Component com = componetService.findOne(1);
+		Component com = componetService.findByComponentName("Component");
 
 		System.out.println("Componnet Id - >" + com.getComponentName());
 

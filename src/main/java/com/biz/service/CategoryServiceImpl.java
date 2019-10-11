@@ -38,12 +38,12 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public Category findOne(long id) {
+	public Category findOne(String id) {
 		return categoryRepository.getOne(id);
 	}
 
 	@Override
-	public void deleteById(long id) {
+	public void deleteById(String id) {
 		categoryRepository.deleteById(id);
 	}
 

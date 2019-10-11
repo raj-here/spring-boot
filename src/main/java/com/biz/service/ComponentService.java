@@ -9,10 +9,12 @@ public interface ComponentService {
 
 	public void save(Component component);
 
-	public Component findOne(long id);
+	public Component findOne(String id);
 
-	public void deleteById(long id);
+	public void deleteById(String id);
 
 	public void delete(Component component);
+	
+	public Component findByComponentName(String name);
 
 }

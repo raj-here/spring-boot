@@ -34,18 +34,23 @@ public class ComponetServiceImpl implements ComponentService {
 	}
 
 	@Override
-	public Component findOne(long id) {
-		return componentRepository.findById(id);
+	public Component findOne(String id) {
+		return componentRepository.findById(id).get();
 	}
 
 	@Override
-	public void deleteById(long id) {
+	public void deleteById(String id) {
 		componentRepository.deleteById(id);
 	}
 
 	@Override
 	public void delete(Component component) {
 		componentRepository.delete(component);
+	}
+
+	@Override
+	public Component findByComponentName(String name) {
+		return componentRepository.findOneByComponentName(name);
 	}
 
 }

@@ -12,9 +12,9 @@ public interface CategoryService {
 	
 	public void saveAll(List<Category> categories);
 
-	public Category findOne(long id);
+	public Category findOne(String id);
 
-	public void deleteById(long id);
+	public void deleteById(String id);
 
 	public void delete(Category category);
 	

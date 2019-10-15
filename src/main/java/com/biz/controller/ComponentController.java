@@ -27,7 +27,7 @@ public class ComponentController {
 	public void saveComponents() {
 		// Level 1
 		ComponentDetail comDetails = new ComponentDetail();
-		comDetails.setName("RMS");
+		comDetails.setDescription("RMS");
 
 		Component com = new Component();
 		com.setComponentName("Component");
@@ -36,11 +36,11 @@ public class ComponentController {
 
 		// Level 2
 		ComponentDetail comDetails1 = new ComponentDetail();
-		comDetails1.setName("RMS 1");
+		comDetails1.setDescription("RMS 1");
 		ComponentDetail comDetails2 = new ComponentDetail();
-		comDetails2.setName("RMS 2");
+		comDetails2.setDescription("RMS 2");
 		ComponentDetail comDetails3 = new ComponentDetail();
-		comDetails3.setName("RMS 3");
+		comDetails3.setDescription("RMS 3");
 
 		Component com1 = new Component();
 		com1.setComponentName("Component 1");
@@ -59,11 +59,11 @@ public class ComponentController {
 
 		// Level 3
 		ComponentDetail comDetails11 = new ComponentDetail();
-		comDetails11.setName("RMS 11");
+		comDetails11.setDescription("RMS 11");
 		ComponentDetail comDetails22 = new ComponentDetail();
-		comDetails22.setName("RMS 22");
+		comDetails22.setDescription("RMS 22");
 		ComponentDetail comDetails33 = new ComponentDetail();
-		comDetails33.setName("RMS 33");
+		comDetails33.setDescription("RMS 33");
 
 		Component com11 = new Component();
 		com11.setComponentName("Component 11");

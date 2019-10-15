@@ -1,8 +1,13 @@
 package com.biz.bo;
 
+import java.util.Date;
+import java.util.List;
+
 public class ComponentDetailsBo {
 	private String id;
-	private String name;
+	private String description;
+	private Date publishedDate;
+	private List<HtmlUrlBo> links;
 
 	public String getId() {
 		return id;
@@ -12,12 +17,28 @@ public class ComponentDetailsBo {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getPublishedDate() {
+		return publishedDate;
+	}
+
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
+	}
+
+	public List<HtmlUrlBo> getLinks() {
+		return links;
+	}
+
+	public void setLinks(List<HtmlUrlBo> links) {
+		this.links = links;
 	}
 
 }

@@ -27,7 +27,6 @@ public class ComponentDetail implements Serializable {
 	@GenericGenerator(name = "uuid", strategy = "uuid")
 	private String id;
 
-	@NotNull
 	@Size(max = 100)
 	@Column(name = "description")
 	private String description;

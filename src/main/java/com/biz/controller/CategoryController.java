@@ -1,9 +1,7 @@
 package com.biz.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.biz.enums.ReseachToolEnum.CategotyType;
 import com.biz.bean.Category;
 import com.biz.bean.Component;
+import com.biz.enums.ReseachToolEnum.CategotyType;
 import com.biz.service.CategoryService;
 import com.biz.service.ComponentService;
 
@@ -75,12 +73,12 @@ public class CategoryController {
 		cat7.setCategoryName("DRS Collaborations");
 		cat7.setIconUrl("https://image.flaticon.com/icons/png/512/97/97895.png");
 		cat7.setType(CategotyType.STANDARD);
-		
+
 		Category cat8 = new Category();
 		cat8.setCategoryName("PUBLIC SOURCE");
 		cat8.setIconUrl("https://image.flaticon.com/icons/png/512/97/97895.png");
 		cat8.setType(CategotyType.PUBLIC_SOURCE);
-		
+
 		Category cat9 = new Category();
 		cat9.setCategoryName("QUICK PART");
 		cat9.setIconUrl("https://image.flaticon.com/icons/png/512/97/97895.png");

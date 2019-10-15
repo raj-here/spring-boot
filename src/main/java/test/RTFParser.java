@@ -4,7 +4,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,26 +37,19 @@ public class RTFParser {
 		handler.getTransformer().setOutputProperty(OutputKeys.METHOD, "xml");
 		handler.getTransformer().setOutputProperty(OutputKeys.INDENT, "no");
 		handler.setResult(new StreamResult(sw));
-
 		tika.getParser().parse(input, handler, metadata, new ParseContext());
 		String htmlText = sw.toString();
 		Document doc = Jsoup.parse(htmlText);
 		Elements links = doc.select("p a");
 
-		// System.out.println(links.after("p"));
-
 		System.err.println(links.after("p"));
-
+		List<RTFParsedData> rtfList = null;
 		try {
-			List<RTFParsedData> rtfList = links.stream().map(link -> {
-
+			rtfList = links.stream().map(link -> {
 				String tempData = link.siblingElements().get(1).text();
-
 				String tempData2[] = tempData.split(",");
-
 				RTFMetaData metaData = new RTFMetaData(Integer.parseInt(tempData2[2].split(" ")[0]), "Author");
 				Link linkData = new Link(link.text(), link.attr("href"));
-
 				return new RTFParsedData(linkData, tempData2[0], new Date(), tempData2[3],
 						link.siblingElements().get(2).text(), metaData);
 			}).collect(Collectors.toList());
@@ -65,7 +57,7 @@ public class RTFParser {
 			System.out.println(e);
 		}
 
-		System.out.println("hello");
+		System.out.println("rtfList" + rtfList);
 
 	}
 }

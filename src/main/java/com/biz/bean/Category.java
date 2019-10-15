@@ -17,6 +17,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.biz.bo.CategoryBo;
 import com.biz.enums.ReseachToolEnum.CategotyType;
 
 @Entity
@@ -44,7 +45,20 @@ public class Category implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
-	private List<Component> component;
+	private List<Component> components;
+	
+	public Category() {
+		super();
+	}
+	
+	public Category(CategoryBo categoryBo) {
+		super();
+		this.id = categoryBo.getId();
+		this.categoryName = categoryBo.getCategoryName();
+		this.type = categoryBo.getType();
+		this.iconUrl = categoryBo.getIconUrl();
+		this.components = categoryBo.getComponent();
+	}
 
 	public String getId() {
 		return id;
@@ -79,11 +93,11 @@ public class Category implements Serializable {
 	}
 
 	public List<Component> getComponent() {
-		return component;
+		return components;
 	}
 
-	public void setComponent(List<Component> component) {
-		this.component = component;
+	public void setComponent(List<Component> components) {
+		this.components = components;
 	}
 
 }

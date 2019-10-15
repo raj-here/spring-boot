@@ -18,6 +18,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.biz.bo.ComponentBo;
+
 @Entity
 @Table(name = "components")
 public class Component implements Serializable {
@@ -49,6 +51,20 @@ public class Component implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "parent_id")
 	private List<Component> subComponets;
+
+	public Component() {
+		super();
+	}
+	
+	public Component(ComponentBo componentBo) {
+		super();
+		this.id = componentBo.getId();
+		this.componentName = componentBo.getComponentName();
+		this.hasChildrens = componentBo.isHasChildrens();
+		this.iconUrl = componentBo.getIconUrl();
+//		this.componentDetail = componentBo.getComponentDetail();
+		
+	}
 
 	public String getId() {
 		return id;

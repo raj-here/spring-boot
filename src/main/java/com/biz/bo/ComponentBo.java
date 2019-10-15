@@ -10,8 +10,8 @@ public class ComponentBo {
 	private String componentName;
 	private boolean hasChildrens;
 	private String iconUrl;
-	private ComponentDetail componentDetail;
-	private List<Component> subComponets;
+	private ComponentDetailsBo componentDetail;
+	private List<ComponentBo> subComponets;
 
 	public String getId() {
 		return id;
@@ -45,19 +45,19 @@ public class ComponentBo {
 		this.iconUrl = iconUrl;
 	}
 
-	public ComponentDetail getComponentDetail() {
+	public ComponentDetailsBo getComponentDetail() {
 		return componentDetail;
 	}
 
-	public void setComponentDetail(ComponentDetail componentDetail) {
+	public void setComponentDetail(ComponentDetailsBo componentDetail) {
 		this.componentDetail = componentDetail;
 	}
 
-	public List<Component> getSubComponets() {
+	public List<ComponentBo> getSubComponets() {
 		return subComponets;
 	}
 
-	public void setSubComponets(List<Component> subComponets) {
+	public void setSubComponets(List<ComponentBo> subComponets) {
 		this.subComponets = subComponets;
 	}
 

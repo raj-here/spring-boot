@@ -11,7 +11,7 @@ public class CategoryBo {
 	private String categoryName;
 	private CategotyType type;
 	private String iconUrl;
-	private List<Component> component;
+	private List<Component> components;
 
 	public String getId() {
 		return id;
@@ -46,11 +46,11 @@ public class CategoryBo {
 	}
 
 	public List<Component> getComponent() {
-		return component;
+		return components;
 	}
 
-	public void setComponent(List<Component> component) {
-		this.component = component;
+	public void setComponent(List<Component> components) {
+		this.components = components;
 	}
 
 }

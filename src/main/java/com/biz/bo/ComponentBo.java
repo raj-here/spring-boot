@@ -2,9 +2,6 @@ package com.biz.bo;
 
 import java.util.List;
 
-import com.biz.bean.Component;
-import com.biz.bean.ComponentDetail;
-
 public class ComponentBo {
 	private String id;
 	private String componentName;

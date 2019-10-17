@@ -1,8 +1,9 @@
 package com.biz.bo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import com.biz.bean.Component;
+import com.biz.bean.Category;
 import com.biz.enums.ReseachToolEnum.CategotyType;
 
 public class CategoryBo {
@@ -11,10 +12,18 @@ public class CategoryBo {
 	private String categoryName;
 	private CategotyType type;
 	private String iconUrl;
-	private List<Component> components;
+	private List<ComponentBo> components;
 
 	public String getId() {
 		return id;
+	}
+
+	public CategoryBo(Category category) {
+		this.id = category.getId();
+		this.categoryName = category.getCategoryName();
+		this.type = category.getType();
+		this.iconUrl = category.getIconUrl();
+		this.components = category.getComponent().stream().map(ComponentBo::new).collect(Collectors.toList());
 	}
 
 	public void setId(String id) {
@@ -45,11 +54,11 @@ public class CategoryBo {
 		this.iconUrl = iconUrl;
 	}
 
-	public List<Component> getComponent() {
+	public List<ComponentBo> getComponent() {
 		return components;
 	}
 
-	public void setComponent(List<Component> components) {
+	public void setComponent(List<ComponentBo> components) {
 		this.components = components;
 	}
 

@@ -3,19 +3,23 @@ package com.biz.bean;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
-import com.biz.bo.HtmlUrlBo;
+import com.biz.bo.ComponentDetailsBo;
 
 @Entity
 @Table(name = "component_details")
@@ -37,7 +41,20 @@ public class ComponentDetail implements Serializable {
 	private Date publishedDate;
 
 	@JoinColumn(name = "link_id")
-	private List<HtmlUrlBo> links;
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<HtmlUrl> links;
+	
+	public ComponentDetail() {
+		super();
+	}
+
+	public ComponentDetail(ComponentDetailsBo componentDetailsBo) {
+		super();
+		this.id = componentDetailsBo.getId();
+		this.description = componentDetailsBo.getDescription();
+		this.publishedDate = componentDetailsBo.getPublishedDate();
+		this.links = componentDetailsBo.getLinks().stream().map(HtmlUrl::new).collect(Collectors.toList());
+	}
 
 	public String getId() {
 		return id;
@@ -63,11 +80,11 @@ public class ComponentDetail implements Serializable {
 		this.publishedDate = publishedDate;
 	}
 
-	public List<HtmlUrlBo> getLinks() {
+	public List<HtmlUrl> getLinks() {
 		return links;
 	}
 
-	public void setLinks(List<HtmlUrlBo> links) {
+	public void setLinks(List<HtmlUrl> links) {
 		this.links = links;
 	}
 

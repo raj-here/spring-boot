@@ -2,6 +2,7 @@ package com.biz.bean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,18 +47,19 @@ public class Category implements Serializable {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
 	private List<Component> components;
-	
+
 	public Category() {
 		super();
 	}
-	
+
 	public Category(CategoryBo categoryBo) {
 		super();
 		this.id = categoryBo.getId();
 		this.categoryName = categoryBo.getCategoryName();
 		this.type = categoryBo.getType();
 		this.iconUrl = categoryBo.getIconUrl();
-		this.components = categoryBo.getComponent();
+		this.components = categoryBo.getComponent().stream().map(Component::new).collect(Collectors.toList());
+		;
 	}
 
 	public String getId() {

@@ -1,6 +1,9 @@
 package com.biz.bo;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.biz.bean.Component;
 
 public class ComponentBo {
 	private String id;
@@ -9,7 +12,16 @@ public class ComponentBo {
 	private String iconUrl;
 	private ComponentDetailsBo componentDetail;
 	private List<ComponentBo> subComponets;
-
+	
+	public ComponentBo(Component component) {
+		this.id = component.getId();
+		this.componentName = component.getComponentName();
+		this.hasChildrens = component.isHasChildrens();
+		this.iconUrl = component.getIconUrl();
+		this.componentDetail = new ComponentDetailsBo(component.getComponentDetail());
+		this.subComponets = component.getSubComponets().stream().map(ComponentBo::new).collect(Collectors.toList());
+	}
+	
 	public String getId() {
 		return id;
 	}

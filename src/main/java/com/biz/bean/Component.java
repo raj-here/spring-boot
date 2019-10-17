@@ -2,6 +2,7 @@ package com.biz.bean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -55,15 +56,16 @@ public class Component implements Serializable {
 	public Component() {
 		super();
 	}
-	
+
 	public Component(ComponentBo componentBo) {
 		super();
 		this.id = componentBo.getId();
 		this.componentName = componentBo.getComponentName();
 		this.hasChildrens = componentBo.isHasChildrens();
 		this.iconUrl = componentBo.getIconUrl();
-//		this.componentDetail = componentBo.getComponentDetail();
-		
+		this.componentDetail = new ComponentDetail(componentBo.getComponentDetail());
+		this.subComponets = componentBo.getSubComponets().stream().map(Component::new).collect(Collectors.toList());
+
 	}
 
 	public String getId() {

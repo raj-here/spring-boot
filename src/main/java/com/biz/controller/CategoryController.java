@@ -2,6 +2,7 @@ package com.biz.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.biz.bean.Category;
 import com.biz.bean.Component;
+import com.biz.bo.CategoryBo;
 import com.biz.enums.ReseachToolEnum.CategotyType;
 import com.biz.service.CategoryService;
 import com.biz.service.ComponentService;
@@ -26,8 +28,8 @@ public class CategoryController {
 	private ComponentService componetService;
 
 	@RequestMapping(path = { "", "/getAll" }, method = RequestMethod.GET)
-	public List<Category> getAllRootCategory() {
-		return categoryService.findAll();
+	public List<CategoryBo> getAllRootCategory() {
+		return categoryService.findAll().stream().map(CategoryBo::new).collect(Collectors.toList());
 	}
 
 	@RequestMapping(path = "/{id}", method = RequestMethod.GET)

@@ -1,9 +1,17 @@
 package com.biz.bo;
 
+import com.biz.bean.HtmlUrl;
+
 public class HtmlUrlBo {
 	private String id;
 	private String text;
 	private String href;
+	
+	public HtmlUrlBo(HtmlUrl htmlUrl) {
+		this.id = htmlUrl.getId();
+		this.text = htmlUrl.getText();
+		this.href = htmlUrl.getHref();
+	}
 
 	public String getId() {
 		return id;

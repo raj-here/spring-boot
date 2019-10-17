@@ -2,12 +2,22 @@ package com.biz.bo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import com.biz.bean.ComponentDetail;
 
 public class ComponentDetailsBo {
 	private String id;
 	private String description;
 	private Date publishedDate;
 	private List<HtmlUrlBo> links;
+
+	public ComponentDetailsBo(ComponentDetail componentDetail) {
+		this.id = componentDetail.getId();
+		this.description = componentDetail.getDescription();
+		this.publishedDate = componentDetail.getPublishedDate();
+		this.links = componentDetail.getLinks().stream().map(HtmlUrlBo::new).collect(Collectors.toList());
+	}
 
 	public String getId() {
 		return id;

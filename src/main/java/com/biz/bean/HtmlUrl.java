@@ -12,6 +12,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
+import com.biz.bo.HtmlUrlBo;
+
 @Entity
 @Table(name = "html_url")
 public class HtmlUrl implements Serializable {
@@ -31,6 +33,17 @@ public class HtmlUrl implements Serializable {
 	@Size(max = 100)
 	@Column(name = "url_href")
 	private String href;
+	
+	public HtmlUrl() {
+		super();
+	}
+	
+	public HtmlUrl(HtmlUrlBo htmlUrlBo) {
+		super();
+		this.id = htmlUrlBo.getId();
+		this.text = htmlUrlBo.getText();
+		this.href = htmlUrlBo.getHref();
+	}
 
 	public String getId() {
 		return id;

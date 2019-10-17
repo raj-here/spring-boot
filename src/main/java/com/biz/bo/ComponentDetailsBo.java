@@ -15,7 +15,7 @@ public class ComponentDetailsBo {
 	public ComponentDetailsBo(ComponentDetail componentDetail) {
 		this.id = componentDetail.getId();
 		this.description = componentDetail.getDescription();
-		this.publishedDate = componentDetail.getPublishedDate();
+//		this.publishedDate = componentDetail.getPublishedDate();
 		this.links = componentDetail.getLinks().stream().map(HtmlUrlBo::new).collect(Collectors.toList());
 	}
 

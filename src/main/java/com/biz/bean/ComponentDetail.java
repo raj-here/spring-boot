@@ -35,10 +35,10 @@ public class ComponentDetail implements Serializable {
 	@Column(name = "description")
 	private String description;
 
-//	@NotNull
-//	@Size(max = 100)
-//	@Column(name = "published_date")
-//	private Date publishedDate;
+	@NotNull
+	@Size(max = 100)
+	@Column(name = "published_date")
+	private Date publishedDate;
 
 	@JoinColumn(name = "link_id")
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -52,7 +52,7 @@ public class ComponentDetail implements Serializable {
 		super();
 		this.id = componentDetailsBo.getId();
 		this.description = componentDetailsBo.getDescription();
-//		this.publishedDate = componentDetailsBo.getPublishedDate();
+		this.publishedDate = componentDetailsBo.getPublishedDate();
 		this.links = componentDetailsBo.getLinks().stream().map(HtmlUrl::new).collect(Collectors.toList());
 	}
 
@@ -72,13 +72,13 @@ public class ComponentDetail implements Serializable {
 		this.description = description;
 	}
 
-//	public Date getPublishedDate() {
-//		return publishedDate;
-//	}
-//
-//	public void setPublishedDate(Date publishedDate) {
-//		this.publishedDate = publishedDate;
-//	}
+	public Date getPublishedDate() {
+		return publishedDate;
+	}
+
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
+	}
 
 	public List<HtmlUrl> getLinks() {
 		return links;

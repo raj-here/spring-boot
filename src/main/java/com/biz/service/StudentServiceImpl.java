@@ -29,9 +29,8 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public Student findById(long id) {
-//		return studentRepository.getOne(id);
-		return studentRepository.findById(id);
+	public Student findById(String id) {
+		return studentRepository.findById(id).orElseThrow(RuntimeException::new);
 	}
 
 }

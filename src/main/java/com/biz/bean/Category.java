@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,6 +39,7 @@ public class Category implements Serializable {
 
 	@NotNull
 	@Column(name = "category_type")
+	@Enumerated(EnumType.STRING)
 	private CategotyType type;
 
 	@NotNull

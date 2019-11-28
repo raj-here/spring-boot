@@ -89,9 +89,8 @@ public class CategoryController {
 		List<Component> comList = new ArrayList<Component>();
 		Component com = componetService.findByComponentName("Component");
 
-		System.out.println("Componnet Id - >" + com.getComponentName());
-
 		if (com != null) {
+			System.out.println("Componnet Id - >" + com.getComponentName());
 			comList.add(com);
 			cat1.setComponent(comList);
 		}

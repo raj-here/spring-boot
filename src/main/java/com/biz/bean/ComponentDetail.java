@@ -14,10 +14,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.biz.bo.ComponentDetailsBo;
 
@@ -35,10 +38,11 @@ public class ComponentDetail implements Serializable {
 	@Column(name = "description")
 	private String description;
 
-//	@NotNull
-//	@Size(max = 100)
-//	@Column(name = "published_date")
-//	private Date publishedDate;
+	@NotNull
+	@Column(name = "published_date")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy-MM-dd kk:mm:ss Z")
+	private Date publishedDate;
 
 	@JoinColumn(name = "link_id")
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -52,7 +56,7 @@ public class ComponentDetail implements Serializable {
 		super();
 		this.id = componentDetailsBo.getId();
 		this.description = componentDetailsBo.getDescription();
-//		this.publishedDate = componentDetailsBo.getPublishedDate();
+		this.publishedDate = componentDetailsBo.getPublishedDate();
 		this.links = componentDetailsBo.getLinks().stream().map(HtmlUrl::new).collect(Collectors.toList());
 	}
 
@@ -72,13 +76,13 @@ public class ComponentDetail implements Serializable {
 		this.description = description;
 	}
 
-//	public Date getPublishedDate() {
-//		return publishedDate;
-//	}
-//
-//	public void setPublishedDate(Date publishedDate) {
-//		this.publishedDate = publishedDate;
-//	}
+	public Date getPublishedDate() {
+		return publishedDate;
+	}
+
+	public void setPublishedDate(Date publishedDate) {
+		this.publishedDate = publishedDate;
+	}
 
 	public List<HtmlUrl> getLinks() {
 		return links;
